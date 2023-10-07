@@ -2,6 +2,11 @@ add_executable(${NAME}
         main.cpp
        
         Agent.cpp
+        GPIOInputMgr.cpp
+        GPIOObserver.cpp
+        
+        HCSR04Range.cpp
+        RangeArray.cpp
         Eyes.cpp
         Servo.cpp
         Head.cpp

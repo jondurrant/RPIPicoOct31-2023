@@ -16,7 +16,7 @@
 #include "Eyes.h"
 #include "Servo.h"
 #include "Head.h"
-
+#include "RangeArray.h"
 
 
 
@@ -81,6 +81,8 @@ void runTimeStats(){
 void main_task(void* params){
 	Eyes eyes( 4, 3, 2);
 	Head head(14,15);
+
+	RangeArray ranges(10, 11,  8, 9,  6, 7);
 	//Servo servoLong(15);
 
 	float d=45.0;
@@ -89,12 +91,16 @@ void main_task(void* params){
 
   printf("Main task started\n");
 
+  ranges.setHead(&head);
+  ranges.setEyes(&eyes);
   head.start("Head", TASK_PRIORITY);
+  ranges.start("Ranges", TASK_PRIORITY);
 
   for(;;){
 
 
 
+	  /*
 	for (int c = 0; c < 6; c++){
 		for (uint8_t i=0; i < 0xFF; i++){
 			switch(c){
@@ -121,6 +127,7 @@ void main_task(void* params){
 			vTaskDelay(5);
 		}
 	}
+	*/
 
 
 
@@ -153,6 +160,7 @@ void main_task(void* params){
 	vTaskDelay(1000);
 	*/
 
+	/*
 	head.moveDeg(lat, d, 200);
 	d = d +45.0;
 	if (d > 140.0){
@@ -162,6 +170,7 @@ void main_task(void* params){
 	if (lat > 120){
 		lat = 70;
 	}
+	*/
 
     runTimeStats();
 
